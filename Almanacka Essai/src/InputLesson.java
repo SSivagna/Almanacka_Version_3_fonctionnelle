@@ -3,13 +3,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+//import java.text.DateFormat;
 import java.text.ParseException;
 //import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Iterator;
+//import java.util.Iterator;
 //import java.util.Date;
 import java.util.List;
-//import java.util.ListIterator;
+import java.util.ListIterator;
 //import java.util.Locale;
 
 public class InputLesson
@@ -19,8 +20,8 @@ public class InputLesson
 	private Boolean _isInputLocked;
 	private Boolean _isAutomaticLocked;
 	private String _placeWrapId;
-/*	private Date _begDate;
-	private Date _endDate;*/
+//	private Date _begDate;
+//	private Date _endDate;
 	private List<Choice> _intensities;
     private List<Choice> _monitors;
     private List<Choice> _hosts;
@@ -28,13 +29,13 @@ public class InputLesson
 	Statement statement = null;
 	ResultSet result = null;
 	
-	public InputLesson(String lessonIdToSet, boolean isInputLockedToSet, String idPlaceToSet/*, Date beginDateToSet, Date endDateToSet*/ ) throws ParseException
+	public InputLesson(String lessonIdToSet, boolean isInputLockedToSet, String idPlaceToSet/*, String beginDateToSet, String endDateToSet*/ ) throws ParseException
 	{
 		_lessonId = lessonIdToSet;
 		_isInputLocked = isInputLockedToSet;
 		_placeWrapId = idPlaceToSet;
-	//	_begDate = beginDateToSet;//new SimpleDateFormat("yyyy.MM.dd", Locale.FRANCE).parse(beginDateToSet);
-	//	_endDate = endDateToSet;//new SimpleDateFormat("yyyy.MM.dd", Locale.FRANCE).parse(endDateToSet);
+	//	_begDate = new SimpleDateFormat("yyyy.MM.dd", Locale.FRANCE).parse(beginDateToSet);
+	//	_endDate = new SimpleDateFormat("yyyy.MM.dd", Locale.FRANCE).parse(endDateToSet);
 	}
 	
 	/* Getters and Setters */
@@ -107,7 +108,7 @@ public class InputLesson
 	{
 		this._endDate = endDate;
 	}
-	*/
+*/
 	public List<Choice> getIntensities()
 	{
 		return _intensities;
@@ -122,7 +123,7 @@ public class InputLesson
     {
     	return _hosts;
     }
-	
+
 	/*
      * returns false if the lesson is invalid.
      */
@@ -142,16 +143,19 @@ public class InputLesson
 		getConnect();
 		statement = connection.createStatement();
 		result = statement.executeQuery("SELECT * FROM almanacka.lesson ;");
-		
 		while(result.next())
 		{
 			String lessonIdFromDB = result.getString("lessonId");
 			Boolean isLocked = result.getBoolean("block");
 			String idPlaceFromDB = result.getString("idPlace");
-		/*	String beginDateFromDB = result.getString("beginDate");
-			Date endDateFromDB = result.getDate("endDate");*/
+		//	Date beginDateFromDB = result.getDate("beginDate");
+		//	Date endDateFromDB = result.getDate("endDate");
 			
-			InputLesson b = new InputLesson(lessonIdFromDB, isLocked, idPlaceFromDB/*, beginDateFromDB, endDateFromDB*/);
+		//	SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd");
+		//	String endDateString = new String(date.format(endDateFromDB));
+		//	String beginDateString = new String(date.format(beginDateFromDB));
+			
+			InputLesson b = new InputLesson(lessonIdFromDB, isLocked, idPlaceFromDB/*, beginDateString, endDateString*/);
 			list.add(b);
 	//		System.out.println("Données : " + lessonIdFromDB+ " " + isLocked+ " " + idPlaceFromDB);
 		//	System.out.println(b);
@@ -162,12 +166,17 @@ public class InputLesson
 	
 	public void ReadInfos(List<InputLesson> list)
 	{	
-	//	ListIterator<InputLesson> li = list.listIterator();
-		Iterator<InputLesson> li = list.iterator();
+		ListIterator<InputLesson> li = list.listIterator();
+	//	Iterator<InputLesson> li = list.iterator();
 		while(li.hasNext())
 		{
-			System.out.println(li.next());
+			System.out.println(li.next().toString());
 		}
+	}
+
+	public String toString()
+	{
+		return "InputLesson [ lessonId = " + _lessonId + ", idPlace = " + _placeWrapId + ", isLocked " + _isLocked + " ]";
 	}
 	
 	public void PrintInfos()
@@ -175,8 +184,8 @@ public class InputLesson
 		System.out.println("Le id du cours " + _lessonId);
 		System.out.println("le block " + _isInputLocked);
 		System.out.println("la place " + _placeWrapId);
-/*		System.out.println("la date " + _begDate );
-		System.out.println("la date " + _endDate );*/
+	//	System.out.println("la date " + _begDate );
+	//	System.out.println("la date " + _endDate );
 	}
 	
 	public boolean connect() throws ClassNotFoundException
