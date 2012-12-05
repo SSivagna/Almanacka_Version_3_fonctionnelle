@@ -1,8 +1,10 @@
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -20,12 +22,18 @@ public class InputPlanning
 		_monitorIntensities = new HashSet<String>();
 	}
 	
+	public InputPlanning( List<InputLesson> lessons, HashSet<String> monitorIntensities )
+	{
+		_lessons = lessons;
+		_monitorIntensities = monitorIntensities;
+	}
+	
 	public List<InputLesson> getLessons()
 	{
 		return _lessons;
 	}
 	
-	public Boolean monitorCanTeach(String monitorId, String intensityId)
+	public Boolean doesMonitorCanTeach(String monitorId, String intensityId)
 	{
 		return _monitorIntensities.contains( monitorId+"|"+intensityId );
 	}
@@ -40,98 +48,115 @@ public class InputPlanning
 		}
 		return cardinality;
     }
-		
-	public void AddInputLesson( InputLesson lesson )
-	{
-		_lessons.add(lesson);
-	}
-	   
-	public void addMonitorCanTeach( String monitorId, String intensityId )
-	{
-		_monitorIntensities.add(monitorId+"|"+intensityId);
-	}
-	
-	public List<InputPlanning> createPlanning()
-	{
-		List<InputLesson> list = new ArrayList<InputLesson>();
-		Connection connection = null;
-		Statement statement = null;
-		ResultSet result = null;
-		connect();
-		getConnect();
 
-		statement = connection.createStatement();
-		result = statement.executeQuery("SELECT * FROM almanacka.lesson;");
-		while(result.next())
+	/*
+	 * Create a planning
+	 */
+	static public InputPlanning createPlanning(Connection connection) throws SQLException, ParseException
+	{
+		Statement statement = connection.createStatement();;
+		ResultSet rSet = statement.executeQuery("SELECT * FROM almanacka.lesson;");
+		
+
+		ArrayList<InputLesson> lessons = new ArrayList<InputLesson>();
+		HashSet<String> monitorIntensities = new HashSet<String>();
+		
+		while(rSet.next())
 		{
-			String lessonIdFromDB = result.getString("lessonId");
-			Boolean isLocked = result.getBoolean("block");
-			String idPlaceFromDB = result.getString("idPlace");
+			String lessonIdFromDB = rSet.getString("lessonId");
+			Boolean isLocked = rSet.getBoolean("block");
+			String idPlaceFromDB = rSet.getString("idPlace");
+			Date begDate = rSet.getDate("BegDate");
+			Date endDate = rSet.getDate("EndDate");
+			InputLesson b = new InputLesson(lessonIdFromDB, isLocked, idPlaceFromDB, new java.util.Date( begDate.getTime() ), new java.util.Date( endDate.getTime() ) );
 			
-			InputLesson b = new InputLesson(lessonIdFromDB, isLocked, idPlaceFromDB);
-			
-	!		_lessons.add(b);
+			lessons.add(b);
 		}
 		
-		result = statement.executeQuery("SELECT * FROM almanacka.usermonitorintensity;");
-		while(result.next())
+		rSet = statement.executeQuery("SELECT * FROM almanacka.usermonitorintensity;");
+		while(rSet.next())
 		{
-			String monitorIdFromDB = result.getString("idMonitor");
-			String intensityIdFromDB = result.getString("idIntensity");
-			
-			_monitorIntensities.add(intensityIdFromDB);
-			_monitorIntensities.add(monitorIdFromDB);
+			String monitorIdFromDB = rSet.getString("idMonitor");
+			String intensityIdFromDB = rSet.getString("idIntensity");			
+			monitorIntensities.add(intensityIdFromDB + '|' + monitorIdFromDB);
 		}
-		ReadInfos(list);
-		return List<InputPlanning> ;
+		return new InputPlanning(lessons, monitorIntensities);
 	}
 	
-	public void ReadInfos(List<InputLesson> list)
-	{	
-		ListIterator<InputLesson> li = list.listIterator();
-		
-		while(li.hasNext())
-		{
-			System.out.println(li.next().toString());
-		}
-	}
-	
+	/*
+	 * Display one element from _monitorIntensities
+	 */
 	@Override
 	public String toString() 
 	{
 		return "InputPlanning [_monitorIntensities=" + _monitorIntensities + "]";
 	}
-
-	public void ReadInfosHashset(HashSet<String> list)
+	
+	
+	/*
+	 * Display every elements from _monitorIntensities
+	 */
+	public void PrintInfosHashset(HashSet<String> hashset)
 	{	
-		Iterator<String> li = list.iterator();
+		Iterator<String> li = hashset.iterator();
 		
 		while(li.hasNext())
 		{
 			System.out.println(li.next().toString());
 		}
 	}
+
 	
-	public void PrintInfos()
-	{
-	/*	System.out.println("Le id du cours " + _lessonId);
-		System.out.println("le block " + _isInputLocked);
-		System.out.println("la place " + _placeWrapId);*/
-	//	System.out.println("la date " + _begDate );
-	//	System.out.println("la date " + _endDate );
+	/*
+	 *  Display all informations about an InputLesson
+	*/
+		public void PrintInfos(List<InputLesson> list)
+	{	
+		ListIterator<InputLesson> li = list.listIterator();
+		while(li.hasNext())
+		{
+			System.out.println(li.next().toString());
+		}
 	}
 	
+		
+	/*
+	 * Display all informations about _lessons
+	 */
+	public void PrintInfosList(List<InputLesson> list)
+	{
+		ListIterator<InputLesson> li = list.listIterator();
+		while (li.hasNext())
+		{
+			System.out.println(li.next().toString());//li.next().PrintInfos();
+		}
+	}
+	
+	
+	/*
+	 * Display all elements from _ monitorIntensities and _lessons
+	 */
+	public void PrintInfos()
+	{
+		PrintInfosList(_lessons);
+		System.out.println("");
+		PrintInfosHashset(_monitorIntensities);
+	}
+	
+	/*
+	 * Connection to the DataBase Almanacka
+	 */
 	public boolean connect() throws ClassNotFoundException
 	{
 		String url = "jdbc:mysql://localhost:3306/almanacka";
 		String user = "root";
-		String password = "root";		
+		String password = "root";	
 		boolean status;
 		
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection(url, user, password);
+			Connection connection = DriverManager.getConnection(url, user, password);
 			System.out.println("Connexion à la base de données REUSSIE");
 			status = true;
 		}
@@ -144,28 +169,9 @@ public class InputPlanning
 		return status;
 	}
 	
-	/*public static boolean disconnect()
-	{
-		String url = "jdbc:mysql://localhost:3306/almanacka";
-		boolean finalStatus;
-		
-		try
-		{
-			Class.forName(url);
-			connection.close();
-			finalStatus = true;
-		}
-		catch (Exception e)
-		{
-			finalStatus = false;
-			e.getMessage();
-			System.out.println("Déconnexion imposible");
-		}
-		return finalStatus;
-	}*/
-	
 	public Connection getConnect()
 	{
+		Connection connection;
 		return connection;
 	}
 }

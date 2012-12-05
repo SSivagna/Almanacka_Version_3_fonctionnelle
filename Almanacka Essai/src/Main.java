@@ -1,6 +1,5 @@
 import java.sql.SQLException;
 import java.text.ParseException;
-//import java.util.List;
 
 public class Main 
 {
@@ -9,10 +8,16 @@ public class Main
 		System.out.println("bonjour");
 		
 		InputLesson test = new InputLesson("1", false, "Paris"/*, "2012-05-01", "2012-05-20"*/);
+	//	test.toString(); 
 		test.PrintInfos();
-		test.toString();
-	//	InputPlanning IP = new InputPlanning();
-	/*	List<InputLesson> a = */
+		
 		test.DataFromDB();
+		
+		System.out.println("");
+		System.out.println("PARTIE INPUTPLANNING");
+		System.out.println("");
+		InputPlanning IP = new InputPlanning();
+		IP.createPlanning();
+		IP.PrintInfos();
 	}
 }
