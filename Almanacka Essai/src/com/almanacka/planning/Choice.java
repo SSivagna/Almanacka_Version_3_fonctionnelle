@@ -1,3 +1,5 @@
+package com.almanacka.planning;
+
 public class Choice
 {
     private int _weight;
@@ -12,7 +14,8 @@ public class Choice
     {
     	return _weight;
     }
-    private void SetWeight( int weightToSet )
+
+	private void SetWeight( int weightToSet )
     {
     	_weight = weightToSet;
     }
@@ -21,7 +24,8 @@ public class Choice
     {
     	return _choiceId;
     }
-    private void SetChoiceId( String choiceIdToSet )
+    
+	private void SetChoiceId( String choiceIdToSet )
     {
     	_choiceId = choiceIdToSet;
     }

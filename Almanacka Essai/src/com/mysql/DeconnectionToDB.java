@@ -1,3 +1,4 @@
+package com.mysql;
 import java.sql.Connection;
 
 
@@ -18,7 +19,7 @@ public class DeconnectionToDB
 		{
 			finalStatus = false;
 			e.getMessage();
-			System.out.println("Déconnexion imposible");
+			System.out.println("Déconnexion impossible");
 		}
 		return finalStatus;
 	}
