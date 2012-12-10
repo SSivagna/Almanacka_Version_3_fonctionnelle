@@ -7,13 +7,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 
 import com.almanacka.planning.InputLesson;
 import com.almanacka.planning.InputPlanning;
 
 
-public class CreatePlanning 
+public class CreatePlanning
 {
 	static public InputPlanning createPlanning(Connection connection) throws SQLException, ParseException
 	{
@@ -28,13 +29,13 @@ public class CreatePlanning
 			String lessonIdFromDB = rSet.getString("lessonId");
 			Boolean isLocked = rSet.getBoolean("block");
 			String idPlaceFromDB = rSet.getString("idPlace");
-		//	Date begDate = rSet.getDate("BegDate");
-		//	Date endDate = rSet.getDate("EndDate");
-			InputLesson b = new InputLesson(lessonIdFromDB, isLocked, idPlaceFromDB/*, new java.util.Date( begDate.getTime() ), new java.util.Date( endDate.getTime() )*/ );
+			Date begDate = rSet.getTime("BegDate");
+			Date endDate = rSet.getDate("EndDate");
+			InputLesson b = new InputLesson(lessonIdFromDB, isLocked, idPlaceFromDB, new java.util.Date( begDate.getTime() ), new java.util.Date( endDate.getTime() ) );
 			
 			lessons.add(b);
 			
-			System.out.println("Données depuis CP : " + lessonIdFromDB +"," /*+ begDate + "," + endDate + "."*/);
+			System.out.println("Données depuis CP : " + lessonIdFromDB +"," + begDate + "," + endDate + ".");
 		}
 		
 		rSet = statement.executeQuery("SELECT * FROM almanacka.usermonitorintensity;");

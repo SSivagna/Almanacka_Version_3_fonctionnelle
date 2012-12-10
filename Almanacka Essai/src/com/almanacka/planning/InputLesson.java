@@ -1,5 +1,5 @@
 package com.almanacka.planning;
-//import java.util.Date;
+import java.util.Date;
 import java.util.List;
 
 public class InputLesson
@@ -9,13 +9,13 @@ public class InputLesson
 	private Boolean _isInputLocked;
 	private Boolean _isAutomaticLocked;
 	private String _placeWrapId;
-/*	private Date _begDate;
-	private Date _endDate;*/
+	private Date _begDate;
+	private Date _endDate;
 	private List<Choice> _intensities;
     private List<Choice> _monitors;
     private List<Choice> _hosts;
 	
-	public InputLesson(String lessonId, boolean isInputLocked, String placeId/*, Date begDate, Date endDate */)
+	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate )
 	{
 		_lessonId = lessonId;
 		_isInputLocked = isInputLocked;
@@ -77,7 +77,7 @@ public class InputLesson
 		this._placeWrapId = placeWrapId;
 	}
 
-/*	public Date getBegDate() 
+	public Date getBegDate() 
 	{
 		return _begDate;
 	}
@@ -95,7 +95,7 @@ public class InputLesson
 	public void setEndDate( Date endDate)
 	{
 		this._endDate = endDate;
-	}*/
+	}
 
 	public List<Choice> getIntensities()
 	{
