@@ -15,6 +15,7 @@ public class Choice
     	return _weight;
     }
 
+	@SuppressWarnings("unused")
 	private void SetWeight( int weightToSet )
     {
     	_weight = weightToSet;
@@ -25,6 +26,7 @@ public class Choice
     	return _choiceId;
     }
     
+	@SuppressWarnings("unused")
 	private void SetChoiceId( String choiceIdToSet )
     {
     	_choiceId = choiceIdToSet;

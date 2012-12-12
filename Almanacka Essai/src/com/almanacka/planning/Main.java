@@ -1,8 +1,9 @@
 package com.almanacka.planning;
+
 import java.sql.Connection;
-import java.sql.ResultSet;
+/*import java.sql.ResultSet;
+import java.sql.Statement;*/
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,6 +11,7 @@ import java.util.Locale;
 
 import com.mysql.ConnectionToDB;
 import com.mysql.CreatePlanning;
+//import com.mysql.jdbc.PreparedStatement;
 
 public class Main 
 {
@@ -20,7 +22,7 @@ public class Main
 		String beta = "2012-05-20 19:00";
 		
 		Date date = new SimpleDateFormat("YYYY-MM-dd HH:mm", Locale.ENGLISH).parse(alpha);
-		Date date2 = new SimpleDateFormat("YYYY-MM-dd HH:mm", Locale.ENGLISH).parse(beta);		
+		Date date2 = new SimpleDateFormat("YYYY-MM-dd HH:mm", Locale.ENGLISH).parse(beta);
 		InputLesson test = new InputLesson("1", false, "0", date, date2);
 		test.toString();
 		
@@ -30,16 +32,34 @@ public class Main
 		
 		Connection a = ConnectionToDB.connect();
 
-		if (a != null)
+		if (a != null)//"INSERT INTO pet(name,sex,dob) VALUES("+value1+", 'm','1998-11-11')");
 		{
-			Statement statement = a.createStatement();
-			int rSet = statement.executeUpdate("INSERT INTO almanacka.lesson (lessonId, block ,placeId, begDate ,endDate) values ('1','false', '0', '"+date+"', '"+date2+"' );");
-			System.out.println("Valeur du int rSet :" + rSet);
+			/*Statement statement = /*ConnectionToDB.connect().createStatement(); a.createStatement();
+			try
+			{
+				int rSet = statement.executeUpdate( "INSERT INTO almanacka.lesson (lessonId, block ,idPlace, begDate, endDate) VALUES ('1', 'false', '0',  "+'" + date + "'+", + "'"+ date2 +"'");" );
+				int rSet = statement.executeUpdate( "INSERT INTO almanacka.lesson (begDate, endDate, lessonId ,idPlace) VALUES ("+ date +" , " + date2 + ", '0', '5')");
+				System.out.println("Valeur du int rSet :" + rSet);
+			}
+			catch (Exception e)
+			{
+				System.out.println("erreur lors de l'insertion ");
+			}*/
 			
+	/*		PreparedStatement st = null;
+			st = a.prepareStatement(Retrieve_st);
+			st.setString(1, 0);
+			
+			ResultSet r = */
 			
 			System.out.println("avant appel CP");
-			CreatePlanning.createPlanning(a);
+			InputPlanning IP1 =CreatePlanning.createPlanning(a);
 			System.out.println("après appel CP");
+			
+			System.out.println("avant appel Optimize");
+			OutputLesson OL = new OutputLesson(test);
+			OL.optimize(IP1);
+			System.out.println("après appel Optimize");
 		}
 		else
 		{
@@ -47,5 +67,3 @@ public class Main
 		}
 	}
 }
-//INSERT INTO `almanacka`.`lesson` (`lessonId`, `idPlace`, `idPersonMonitor`, `begDate`, `during`, `idIntensity`, `endDate`) VALUES ('7', '0', '1', '2012-11-01 18:00:00', '1', '2', '2013-01-30 19:00:00');
-

@@ -14,14 +14,14 @@ public class InputLesson
 	private List<Choice> _intensities;
     private List<Choice> _monitors;
     private List<Choice> _hosts;
-	
+
 	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate )
 	{
 		_lessonId = lessonId;
 		_isInputLocked = isInputLocked;
 		_placeWrapId = placeId;
-	/*	_begDate = begDate;
-		_endDate = endDate;*/
+		_begDate = begDate;
+		_endDate = endDate;
 	}
 	
 	/*

@@ -6,8 +6,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-//import com.mysql.CreatePlanning;
-
 public class InputPlanning
 {
 	private List<InputLesson> _lessons;
