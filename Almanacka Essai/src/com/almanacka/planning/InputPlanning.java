@@ -28,6 +28,11 @@ public class InputPlanning
 		return _lessons;
 	}
 	
+/*	public InputLesson getInput(int i)
+	{
+		return this._lessons.get(i);
+	}
+	*/
 	public Boolean doesMonitorCanTeach(String monitorId, String intensityId)
 	{
 		return _monitorIntensities.contains( monitorId+"|"+intensityId );
@@ -68,7 +73,7 @@ public class InputPlanning
 
 	/*
 	 *  Display all informations about an InputLesson
-	*/
+	 */
 	public void PrintInfos(List<InputLesson> list)
 	{	
 		ListIterator<InputLesson> li = list.listIterator();

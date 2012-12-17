@@ -131,4 +131,17 @@ public class InputLesson
 	{
 		return "InputLesson [ lessonId = " + _lessonId + ", idPlace = " + _placeWrapId + ", isInputLocked " + _isInputLocked + " ]";
 	}
+	
+	/*
+	 * Display all informations about an inputlesson
+	 */
+	public void PrintInfos()
+	{
+		System.out.println("Le id du cours : " + _lessonId);
+		System.out.println("le block : " + _isInputLocked);
+		System.out.println("la place : " + _placeWrapId);
+		System.out.println("la date : " + _begDate );
+		System.out.println("la date : " + _endDate);
+		System.out.println("");
+	}
 }

@@ -14,6 +14,12 @@ public class OutputPlanning
 		_lessons = new ArrayList<OutputLesson>();
 	}
 	
+	public OutputPlanning(double cost, List<OutputLesson> listOutputlessons)
+	{
+		_cost = cost;
+		_lessons =listOutputlessons;
+	}
+	
 	public double getCost()
 	{
 		return _cost;

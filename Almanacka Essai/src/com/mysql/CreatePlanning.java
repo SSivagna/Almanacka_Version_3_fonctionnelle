@@ -47,7 +47,7 @@ public class CreatePlanning
 			System.out.println("Données depuis CP : " + lessonIdFromDB +" , " + begDate + " , " + endDate + " , "+ begDateTime + " , " + endDateTime +".");
 		}
 		
-		rSet = statement.executeQuery("SELECT * FROM almanacka.usermonitorintensity;");
+		rSet = statement.executeQuery("SELECT idMonitor, idIntensity FROM almanacka.usermonitorintensity;");
 		while(rSet.next())
 		{
 			String monitorIdFromDB = rSet.getString("idMonitor");
