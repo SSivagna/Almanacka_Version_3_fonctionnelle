@@ -32,19 +32,21 @@ public class CreatePlanning
 			Boolean isLocked = rSet.getBoolean("block");
 			Date endDate = rSet.getDate("endDate");
 			Time endDateTime = rSet.getTime("endDate"); // collection of the lessons ending hours.
+			//il faut lire ds BDD les monitor intensities et les mettre ds variable
 			
-		/*	try
-			{*/
+			try
+			{
 				InputLesson b = new InputLesson(lessonIdFromDB, isLocked, idPlaceFromDB, new java.util.Date( begDate.getTime() ), new java.util.Date( endDate.getTime() ) );
+				//il faut too add ds ce cstctr la variable contenant le monitorintensities   etc...pour autres
+				//ici chaque inputlesson a un monitorintensities... qui est null!!!
 				lessons.add(b);
-	/*		}
+			}
 			catch (Exception e)
 			{
 				System.out.println("erreur lors de la création ");
-			}*/
+			}
 			
-			
-			System.out.println("Données depuis CP : " + lessonIdFromDB +" , " + begDate + " , " + endDate + " , "+ begDateTime + " , " + endDateTime +".");
+			//System.out.println("Données depuis CP : " + lessonIdFromDB +" , " + begDate + " , " + endDate + " , "+ begDateTime + " , " + endDateTime +".");
 		}
 		
 		rSet = statement.executeQuery("SELECT idMonitor, idIntensity FROM almanacka.usermonitorintensity;");
@@ -54,6 +56,27 @@ public class CreatePlanning
 			String intensityIdFromDB = rSet.getString("idIntensity");			
 			monitorIntensities.add(intensityIdFromDB + '|' + monitorIdFromDB);
 		}
+		
+		/*
+		if(monitorIntensities == null)
+		{
+			System.out.println(" monitorIntensities de ce InputPlanning est NULL!!!! ");
+		}
+		else 
+		{
+			System.out.println("ok!!");
+			System.out.println(monitorIntensities.toString());
+		}	
+		
+		if(lessons==null)
+			System.out.println("lessons de ce InputPlanning est NULL!!!");
+		else
+		{
+			System.out.println("ok");
+			System.out.println(lessons.toString());
+		}
+		*/
+		//ici chaque inputlesson a un monitorintensities... qui est null!!!
 		return new InputPlanning(lessons, monitorIntensities);
 	}
 }

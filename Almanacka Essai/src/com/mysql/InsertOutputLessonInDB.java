@@ -1,7 +1,7 @@
 package com.mysql;
 
 import java.sql.Connection;
-//import java.sql.Date;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -13,49 +13,51 @@ public class InsertOutputLessonInDB
 {
 	static public void InsertOutputLesson(Connection connection, InputPlanning input, int p) throws SQLException
 	{
-		OutputPlanning a = OutputLesson.CreateOutputPlanning(input, p);
-		for(int i =0; i <a.getLessons().size(); i++ )
+		OutputPlanning a = OutputLesson.createOutputPlanning(input, p);
+		for(int i = 0; i < a.getLessons().size(); i++ )
 		{
+			String sql = "INSERT INTO almanacka.lessonfortest (lessonId, idPlace, begDate, block, endDate) VALUES (?, ?, ?, ?, ?)";
+			
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			
+			int rSet = -1;
+			
 			try
 			{
-				a.getLessons().get(i);
-		
-				String sql = "INSERT INTO almanacka.lessonfortest (lessonId, block) VALUES (?, ?)";
-				
-				PreparedStatement preparedStatement = connection.prepareStatement(sql);
-				String chaine = a.getLessons().get(i).getLessonId();
-			//	System.out.println("chaîne 1 : " + chaine);
-			//	String chaine2 = a.getLessons().get(i).getPlaceWrapId();
-				
-				
-				
-				preparedStatement.setString(1, chaine);
-				preparedStatement.setBoolean(2, false);
-			//	preparedStatement.setString(3, chaine2);
-				
-			//	java.sql.Date sqlBegDate = new Date(a.getLessons().get(i).getBegDate().getTime());
-			//	java.sql.Date sqlEndDate = new Date(a.getLessons().get(i).getEndDate().getTime());
-				
-			//	preparedStatement.setDate(4, sqlBegDate );
-			//	preparedStatement.setDate(5, sqlEndDate);
-			//	System.out.println("sqlBegDate : " + sqlBegDate);
-			//	System.out.println("sqlEndDate : " + sqlEndDate);
-				
-				int rSet = preparedStatement.executeUpdate();
+				OutputLesson lesson = a.getLessons().get(i);
 			
-				System.out.println("Valeur du int rSet :" + rSet);
+	     		java.sql.Date sqlBegDate = new Date(lesson.getBegDate().getTime());
+				java.sql.Date sqlEndDate = new Date(lesson.getEndDate().getTime());
+				
+			    preparedStatement.setInt(1,Integer.parseInt(lesson.getLessonId()));
+		//		preparedStatement.setString(1, lesson.getLessonId());
+				preparedStatement.setInt(2, Integer.parseInt(lesson.getPlaceWrapId()));
+		//		preparedStatement.setString(3, lesson.getPlaceWrapId());
+				preparedStatement.setDate(3, sqlBegDate );
+				preparedStatement.setBoolean(4, false);
+				preparedStatement.setDate(5, sqlEndDate);
+				
+				System.out.println(preparedStatement.toString());
+				System.out.println("sqlBegDate : " + sqlBegDate);
+				System.out.println("sqlEndDate : " + sqlEndDate);
+				
+				rSet = preparedStatement.executeUpdate();
+				System.out.println("Valeur du int rSet :" + rSet);	
+				System.out.println("   ");
 			}
 			catch (Exception e)
 			{
+				System.out.println(rSet);
 				System.out.println("Erreur lors de l'insertion de l'OuputLesson dans la base de données !!! ");
 			}
-	/*		finally
+			finally
 			{
-				if( preparedStatement != null)
+				if(preparedStatement != null)
 				{
 					preparedStatement.close();
 				}
-			}*/
-		}
+			}
+	
+	}
 	}
 }

@@ -10,48 +10,50 @@ import java.util.List;
 public class OutputLesson
 {
 	private InputLesson _input;
-/*	private String _lessonId;
+	private String _lessonId;
 	private Boolean _isLocked;
 	private String _placeWrapId;
-	private Date _bedDate;
-	private Date _endDate;*/
+	private Date _begDate;
+	private Date _endDate;
 	private String _intensityId;
 	private String _monitorId;
 	private String _host;
 	
-	public OutputLesson (InputLesson input)
+	/*public OutputLesson (InputLesson input)
 	{
-		if(_input != null && input.getIsLocked() == true)
+		if(_input != null /*&& input.getIsLocked() == true )
 		{
 			_input = input;
-			_intensityId = getInput().getIntensities().get(0).GetChoiceId();
-			_monitorId = getInput().getMonitors().get(0).GetChoiceId();
-		/*	_hosts = new ArrayList<String>();
-			
-			for (int i=0; i< getInput().getHosts().size() - 1; i++)
-			{
-				_hosts.add(getInput().getHosts().get(i).GetChoiceId());
-			}*/
-			_host = getInput().getHosts().get(0).GetChoiceId();
+			_lessonId=_input.getLessonId();
+			_isLocked=input.getIsInputLocked();
+			_placeWrapId=_input.getPlaceWrapId();
+			_begDate=_input.getBegDate();
+			_endDate=_input.getEndDate();
+			_intensityId = _input.getIntensities().get(0).GetChoiceId();
+			_monitorId = _input.getMonitors().get(0).GetChoiceId();
+			_host = _input.getHosts().get(0).GetChoiceId();
 		}
-	}
+		else 
+			System.out.println("Argument passé est nul!!!!");
+	}*/
 	
 	//Ctor pour méthode CreateOuputPlanning
 	public OutputLesson (InputLesson input, int index)
 	{
-		if(_input != null && input.getIsLocked() == true)
-		{
+		/*if(_input != null /*&& input.getIsLocked() == true)
+		{*/
 			_input = input;
-			_intensityId = getInput().getIntensities().get(index).GetChoiceId();
-			_monitorId = getInput().getMonitors().get(index).GetChoiceId();
-		/*	_hosts = new ArrayList<String>();
-			
-			for (int i=0; i< getInput().getHosts().size() - 1; i++)
-			{
-				_hosts.add(getInput().getHosts().get(i).GetChoiceId());
-			}*/
-			_host = getInput().getHosts().get(index).GetChoiceId();
-		}
+			_lessonId=_input.getLessonId();
+			_isLocked=input.getIsInputLocked();
+			_placeWrapId=_input.getPlaceWrapId();
+			_begDate=_input.getBegDate();
+			_endDate=_input.getEndDate();
+			_intensityId = _input.getIntensities().get(index).GetChoiceId();
+			_monitorId = _input.getMonitors().get(index).GetChoiceId();
+			_host = _input.getHosts().get(index).GetChoiceId();
+		/*}
+		else 
+			System.out.println("Argument passé est nul!!!!");*/
 	}
 	
 	public InputLesson getInput()
@@ -61,27 +63,27 @@ public class OutputLesson
 	
 	public String getLessonId()
 	{
-		return getInput().getLessonId();
+		return _lessonId;
 	}
 	
 	public Boolean getIsLocked()
 	{
-		return getInput().getIsLocked();
+		return _isLocked;
 	}
 	
 	public String getPlaceWrapId()
 	{
-		return getInput().getPlaceWrapId();
+		return _placeWrapId;
 	}
 	
 	public Date getBegDate()
 	{
-		return getInput().getBegDate();
+		return _begDate;
 	}
 	
 	public Date getEndDate()
 	{
-		return getInput().getEndDate();
+		return _endDate;
 	}
 	
 	public String getIntensityId()
@@ -94,37 +96,44 @@ public class OutputLesson
 		return _monitorId;
 	}
 	
-	/*public List<String> getHosts()
-	{
-		return _hosts;
-	}*/
-	
 	public String getHostd()
 	{
 		return _host;
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "OutputLesson [_input=" + _input + ", _lessonId=" + _lessonId
+				+ ", _isLocked=" + _isLocked + ", _placeWrapId=" + _placeWrapId
+				+ ", _begDate=" + _begDate + ", _endDate=" + _endDate
+				+ ", _intensityId=" + _intensityId + ", _monitorId="
+				+ _monitorId + ", _host=" + _host + "]";
+	}
+
 	public List<OutputPlanning> optimize(InputPlanning input, int nbMaxSolution)
 	{
 		List<OutputPlanning> listOutputPlanning=new ArrayList<OutputPlanning>();
 		
 		for(int p = 0; p<nbMaxSolution ; p++)
 		{
-			listOutputPlanning.add( CreateOutputPlanning(input, p) );
+			listOutputPlanning.add( createOutputPlanning(input, p) );
 		}
 		return listOutputPlanning;
 	}
 	
-	static public OutputPlanning CreateOutputPlanning (InputPlanning input, int p)
+	//on prend 5 elements de InputPlanning
+	static public OutputPlanning createOutputPlanning (InputPlanning input, int p)
 	{
 		List<OutputLesson> listOutputLesson = new ArrayList<>();
 		for(int i= 0; i< input.getLessons().size(); i++)
 		{
-			OutputLesson ol = new OutputLesson(input.getLessons().get(i), p);
-			
-			listOutputLesson.add(ol);
+			listOutputLesson.add( new OutputLesson(input.getLessons().get(i), p));
+						
+			System.out.println(listOutputLesson.get(i).toString());
+			System.out.println("   ");
 		}
-		OutputPlanning op = new OutputPlanning( 0, listOutputLesson );
-		return op;
+		return new OutputPlanning( 0, listOutputLesson );
 	}
 }

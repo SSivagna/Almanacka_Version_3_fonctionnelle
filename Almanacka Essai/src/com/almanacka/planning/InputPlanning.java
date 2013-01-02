@@ -28,11 +28,6 @@ public class InputPlanning
 		return _lessons;
 	}
 	
-/*	public InputLesson getInput(int i)
-	{
-		return this._lessons.get(i);
-	}
-	*/
 	public Boolean doesMonitorCanTeach(String monitorId, String intensityId)
 	{
 		return _monitorIntensities.contains( monitorId+"|"+intensityId );
@@ -50,20 +45,12 @@ public class InputPlanning
     }
 	
 	/*
-	 * Display one element from _monitorIntensities
-	 */
-	@Override
-	public String toString() 
-	{
-		return "InputPlanning [_monitorIntensities=" + _monitorIntensities + "]";
-	}
-	
-	/*
 	 * Display every elements from _monitorIntensities
 	 */
 	public void PrintInfosHashset(HashSet<String> hashset)
 	{	
 		Iterator<String> li = hashset.iterator();
+		System.out.println("Infos monitorIntensities");
 		
 		while(li.hasNext())
 		{
@@ -77,6 +64,7 @@ public class InputPlanning
 	public void PrintInfos(List<InputLesson> list)
 	{	
 		ListIterator<InputLesson> li = list.listIterator();
+		System.out.println("Infos sur InputLesson");
 		while(li.hasNext())
 		{
 			System.out.println(li.next().toString());

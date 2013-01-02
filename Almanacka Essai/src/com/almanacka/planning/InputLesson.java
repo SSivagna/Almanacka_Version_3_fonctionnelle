@@ -1,4 +1,5 @@
 package com.almanacka.planning;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,13 +16,16 @@ public class InputLesson
     private List<Choice> _monitors;
     private List<Choice> _hosts;
 
-	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate )
+	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate /*,il faut donner une liste de monitorintensitie et etc pour les autres... */ )
 	{
 		_lessonId = lessonId;
 		_isInputLocked = isInputLocked;
 		_placeWrapId = placeId;
 		_begDate = begDate;
 		_endDate = endDate;
+		//_intensities=intensities;
+		//_intensities.add(e);
+		
 	}
 	
 	/*
@@ -124,24 +128,16 @@ public class InputLesson
         return true;
     }
 	
-	/*
+    /*
 	 * Display all informations about an InputLesson
 	 */
-	public String toString()
-	{
-		return "InputLesson [ lessonId = " + _lessonId + ", idPlace = " + _placeWrapId + ", isInputLocked " + _isInputLocked + " ]";
-	}
-	
-	/*
-	 * Display all informations about an inputlesson
-	 */
-	public void PrintInfos()
-	{
-		System.out.println("Le id du cours : " + _lessonId);
-		System.out.println("le block : " + _isInputLocked);
-		System.out.println("la place : " + _placeWrapId);
-		System.out.println("la date : " + _begDate );
-		System.out.println("la date : " + _endDate);
-		System.out.println("");
+	@Override
+	public String toString() {
+		return "InputLesson [_lessonId=" + _lessonId + ", _isLocked="
+				+ _isLocked + ", _isInputLocked=" + _isInputLocked
+				+ ", _isAutomaticLocked=" + _isAutomaticLocked
+				+ ", _placeWrapId=" + _placeWrapId + ", _begDate=" + _begDate
+				+ ", _endDate=" + _endDate + ", _intensities=" + _intensities
+				+ ", _monitors=" + _monitors + ", _hosts=" + _hosts + "]";
 	}
 }
