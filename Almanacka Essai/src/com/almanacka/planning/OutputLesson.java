@@ -18,42 +18,19 @@ public class OutputLesson
 	private String _intensityId;
 	private String _monitorId;
 	private String _host;
-	
-	/*public OutputLesson (InputLesson input)
-	{
-		if(_input != null /*&& input.getIsLocked() == true )
-		{
-			_input = input;
-			_lessonId=_input.getLessonId();
-			_isLocked=input.getIsInputLocked();
-			_placeWrapId=_input.getPlaceWrapId();
-			_begDate=_input.getBegDate();
-			_endDate=_input.getEndDate();
-			_intensityId = _input.getIntensities().get(0).GetChoiceId();
-			_monitorId = _input.getMonitors().get(0).GetChoiceId();
-			_host = _input.getHosts().get(0).GetChoiceId();
-		}
-		else 
-			System.out.println("Argument passé est nul!!!!");
-	}*/
-	
+		
 	//Ctor pour méthode CreateOuputPlanning
-	public OutputLesson (InputLesson input, int index)
+	public OutputLesson (InputLesson input /*, int index*/)
 	{
-		/*if(_input != null /*&& input.getIsLocked() == true)
-		{*/
-			_input = input;
-			_lessonId=_input.getLessonId();
-			_isLocked=input.getIsInputLocked();
-			_placeWrapId=_input.getPlaceWrapId();
-			_begDate=_input.getBegDate();
-			_endDate=_input.getEndDate();
-			_intensityId = _input.getIntensities().get(index).GetChoiceId();
-			_monitorId = _input.getMonitors().get(index).GetChoiceId();
-			_host = _input.getHosts().get(index).GetChoiceId();
-		/*}
-		else 
-			System.out.println("Argument passé est nul!!!!");*/
+		_input = input;
+		_lessonId=_input.getLessonId();
+		_isLocked=input.getIsInputLocked();
+		_placeWrapId=_input.getPlaceWrapId();
+		_begDate=_input.getBegDate();
+		_endDate=_input.getEndDate();
+		_intensityId = input.getIntensities().get(0);
+		_monitorId = input.getMonitors().get(0);
+		_host = input.getHosts().get(0);
 	}
 	
 	public InputLesson getInput()
@@ -99,9 +76,7 @@ public class OutputLesson
 	public String getHostd()
 	{
 		return _host;
-	}
-	
-	
+	}	
 	
 	@Override
 	public String toString() {
@@ -129,7 +104,7 @@ public class OutputLesson
 		List<OutputLesson> listOutputLesson = new ArrayList<>();
 		for(int i= 0; i< input.getLessons().size(); i++)
 		{
-			listOutputLesson.add( new OutputLesson(input.getLessons().get(i), p));
+			listOutputLesson.add( new OutputLesson(input.getLessons().get(i) /*, p*/));
 						
 			System.out.println(listOutputLesson.get(i).toString());
 			System.out.println("   ");

@@ -12,20 +12,47 @@ public class InputLesson
 	private String _placeWrapId;
 	private Date _begDate;
 	private Date _endDate;
-	private List<Choice> _intensities;
-    private List<Choice> _monitors;
-    private List<Choice> _hosts;
+	private List<String> _intensities;
+	private List<String> _monitors;
+	private List<String> _hosts;
 
-	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate /*,il faut donner une liste de monitorintensitie et etc pour les autres... */ )
+	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate, List<String> iTensities, List<String> iMonitors, List<String> iHosts )
 	{
 		_lessonId = lessonId;
 		_isInputLocked = isInputLocked;
 		_placeWrapId = placeId;
 		_begDate = begDate;
 		_endDate = endDate;
-		//_intensities=intensities;
-		//_intensities.add(e);
-		
+		_intensities = new ArrayList<>(iTensities);
+		_monitors = new ArrayList<>(iMonitors);
+		_hosts = new ArrayList<>(iHosts);
+	}
+	
+	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate, String intensity, String monitor )
+	{
+		_lessonId = lessonId;
+		_isInputLocked = isInputLocked;
+		_placeWrapId = placeId;
+		_begDate = begDate;
+		_endDate = endDate;	
+		_intensities = new ArrayList<>();
+		_monitors = new ArrayList<>();
+		_intensities.add(intensity);
+		_monitors.add(monitor);
+	}
+	
+	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate, String intensity, String monitor, List<String> host )
+	{
+		_lessonId = lessonId;
+		_isInputLocked = isInputLocked;
+		_placeWrapId = placeId;
+		_begDate = begDate;
+		_endDate = endDate;	
+		_intensities = new ArrayList<>();
+		_monitors = new ArrayList<>();
+		_intensities.add(intensity);
+		_monitors.add(monitor);
+		_hosts=new ArrayList<String>(host);
 	}
 	
 	/*
@@ -101,20 +128,20 @@ public class InputLesson
 		this._endDate = endDate;
 	}
 
-	public List<Choice> getIntensities()
+	public List<String> getIntensities()
 	{
 		return _intensities;
 	}
 	
-    public List<Choice> getMonitors()
-    {
-    	return _monitors;
-    }
-    
-    public List<Choice> getHosts()
-    {
-    	return _hosts;
-    }
+	public List<String> getMonitors()
+	{
+		return _intensities;
+	}
+	
+	public List<String> getHosts()
+	{
+		return _hosts;
+	}
 
 	/*
      * returns false if the lesson is invalid.

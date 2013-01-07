@@ -16,7 +16,7 @@ public class InsertOutputLessonInDB
 		OutputPlanning a = OutputLesson.createOutputPlanning(input, p);
 		for(int i = 0; i < a.getLessons().size(); i++ )
 		{
-			String sql = "INSERT INTO almanacka.lessonfortest (lessonId, idPlace, begDate, block, endDate) VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO almanacka.lessonfortest (lessonId, idPlace, begDate, block, endDate, idIntensity , idPersonMonitor) VALUES (?, ?, ?, ?, ?)";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			
@@ -30,12 +30,12 @@ public class InsertOutputLessonInDB
 				java.sql.Date sqlEndDate = new Date(lesson.getEndDate().getTime());
 				
 			    preparedStatement.setInt(1,Integer.parseInt(lesson.getLessonId()));
-		//		preparedStatement.setString(1, lesson.getLessonId());
 				preparedStatement.setInt(2, Integer.parseInt(lesson.getPlaceWrapId()));
-		//		preparedStatement.setString(3, lesson.getPlaceWrapId());
 				preparedStatement.setDate(3, sqlBegDate );
 				preparedStatement.setBoolean(4, false);
 				preparedStatement.setDate(5, sqlEndDate);
+				
+				// créer les mêmes variables pour idIntensity et idpersonMonitor
 				
 				System.out.println(preparedStatement.toString());
 				System.out.println("sqlBegDate : " + sqlBegDate);
@@ -58,6 +58,6 @@ public class InsertOutputLessonInDB
 				}
 			}
 	
-	}
+		}
 	}
 }
