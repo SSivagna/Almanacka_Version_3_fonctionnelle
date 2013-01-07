@@ -6,8 +6,8 @@ import java.util.List;
 public class InputLesson
 {
 	private String _lessonId;
-	private Boolean _isLocked;
-	private Boolean _isInputLocked;
+	private Byte _isLocked;
+	private Byte _isInputLocked;
 	private Boolean _isAutomaticLocked;
 	private String _placeWrapId;
 	private Date _begDate;
@@ -16,7 +16,7 @@ public class InputLesson
 	private List<String> _monitors;
 	private List<String> _hosts;
 
-	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate, List<String> iTensities, List<String> iMonitors, List<String> iHosts )
+	public InputLesson(String lessonId, Byte isInputLocked, String placeId, Date begDate, Date endDate, List<String> iTensities, List<String> iMonitors, List<String> iHosts )
 	{
 		_lessonId = lessonId;
 		_isInputLocked = isInputLocked;
@@ -28,7 +28,7 @@ public class InputLesson
 		_hosts = new ArrayList<>(iHosts);
 	}
 	
-	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate, String intensity, String monitor )
+	public InputLesson(String lessonId, Byte isInputLocked, String placeId, Date begDate, Date endDate, String intensity, String monitor )
 	{
 		_lessonId = lessonId;
 		_isInputLocked = isInputLocked;
@@ -41,7 +41,7 @@ public class InputLesson
 		_monitors.add(monitor);
 	}
 	
-	public InputLesson(String lessonId, boolean isInputLocked, String placeId, Date begDate, Date endDate, String intensity, String monitor, List<String> host )
+	public InputLesson(String lessonId, Byte isInputLocked, String placeId, Date begDate, Date endDate, String intensity, String monitor, List<String> hosts )
 	{
 		_lessonId = lessonId;
 		_isInputLocked = isInputLocked;
@@ -52,7 +52,7 @@ public class InputLesson
 		_monitors = new ArrayList<>();
 		_intensities.add(intensity);
 		_monitors.add(monitor);
-		_hosts=new ArrayList<String>(host);
+		_hosts=new ArrayList<String>(hosts);
 	}
 	
 	/*
@@ -68,26 +68,26 @@ public class InputLesson
 		this._lessonId = lessonId;
 	}
 
-	public Boolean getIsLocked()
+	public Byte getIsLocked()
 	{
 		return _isLocked;
 	}
 
-	public void setIsLocked(Boolean isLocked)
+	public void setIsLocked(Byte isLocked)
 	{
 		this._isLocked = isLocked;
 	}
 
-	public Boolean getIsInputLocked()
+	public Byte getIsInputLocked()
 	{
 		return _isInputLocked;
 	}
 
-	public void setIsInputLocked(Boolean isInputLocked)
+	public void setIsInputLocked(Byte isInputLocked)
 	{
 		this._isInputLocked = isInputLocked;
 	}
-
+	
 	public Boolean getIsAutomaticLocked()
 	{
 		return _isAutomaticLocked;
@@ -146,14 +146,14 @@ public class InputLesson
 	/*
      * returns false if the lesson is invalid.
      */
-    protected Boolean preprocessInput(InputPlanning planning)
+	/*protected Boolean preprocessInput(InputPlanning planning)
     {
         if( !_isLocked )
         {
             _isAutomaticLocked = _intensities.size() == 1 && _monitors.size() == 1 && _hosts.size() == 1;
         }
         return true;
-    }
+    }*/
 	
     /*
 	 * Display all informations about an InputLesson

@@ -11,7 +11,7 @@ public class OutputLesson
 {
 	private InputLesson _input;
 	private String _lessonId;
-	private Boolean _isLocked;
+	private Byte _isLocked;
 	private String _placeWrapId;
 	private Date _begDate;
 	private Date _endDate;
@@ -20,7 +20,7 @@ public class OutputLesson
 	private String _host;
 		
 	//Ctor pour méthode CreateOuputPlanning
-	public OutputLesson (InputLesson input /*, int index*/)
+	public OutputLesson (InputLesson input) // on oublie le int index
 	{
 		_input = input;
 		_lessonId=_input.getLessonId();
@@ -43,11 +43,11 @@ public class OutputLesson
 		return _lessonId;
 	}
 	
-	public Boolean getIsLocked()
+	public Byte getIsLocked()
 	{
 		return _isLocked;
 	}
-	
+
 	public String getPlaceWrapId()
 	{
 		return _placeWrapId;
@@ -89,7 +89,7 @@ public class OutputLesson
 
 	public List<OutputPlanning> optimize(InputPlanning input, int nbMaxSolution)
 	{
-		List<OutputPlanning> listOutputPlanning=new ArrayList<OutputPlanning>();
+		List<OutputPlanning> listOutputPlanning = new ArrayList<OutputPlanning>();
 		
 		for(int p = 0; p<nbMaxSolution ; p++)
 		{
@@ -98,14 +98,14 @@ public class OutputLesson
 		return listOutputPlanning;
 	}
 	
-	//on prend 5 elements de InputPlanning
+	//on prend 5 éléments de InputPlanning
 	static public OutputPlanning createOutputPlanning (InputPlanning input, int p)
 	{
 		List<OutputLesson> listOutputLesson = new ArrayList<>();
 		for(int i= 0; i< input.getLessons().size(); i++)
 		{
-			listOutputLesson.add( new OutputLesson(input.getLessons().get(i) /*, p*/));
-						
+			listOutputLesson.add( new OutputLesson(input.getLessons().get(i))); // on oublie le p
+					
 			System.out.println(listOutputLesson.get(i).toString());
 			System.out.println("   ");
 		}

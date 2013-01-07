@@ -20,8 +20,6 @@ public class InsertOutputLessonInDB
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			
-			int rSet = -1;
-			
 			try
 			{
 				OutputLesson lesson = a.getLessons().get(i);
@@ -35,19 +33,20 @@ public class InsertOutputLessonInDB
 				preparedStatement.setBoolean(4, false);
 				preparedStatement.setDate(5, sqlEndDate);
 				
-				// créer les mêmes variables pour idIntensity et idpersonMonitor
+				// créer les mêmes variables pour idIntensity et idpersonMonitor CREER HOY
+				preparedStatement.setInt(6, Integer.parseInt(lesson.getMonitorId()));
+				preparedStatement.setInt(7, Integer.parseInt(lesson.getIntensityId()));
 				
 				System.out.println(preparedStatement.toString());
 				System.out.println("sqlBegDate : " + sqlBegDate);
 				System.out.println("sqlEndDate : " + sqlEndDate);
 				
-				rSet = preparedStatement.executeUpdate();
+				int rSet = preparedStatement.executeUpdate();
 				System.out.println("Valeur du int rSet :" + rSet);	
 				System.out.println("   ");
 			}
 			catch (Exception e)
 			{
-				System.out.println(rSet);
 				System.out.println("Erreur lors de l'insertion de l'OuputLesson dans la base de données !!! ");
 			}
 			finally
@@ -57,7 +56,6 @@ public class InsertOutputLessonInDB
 					preparedStatement.close();
 				}
 			}
-	
 		}
 	}
 }

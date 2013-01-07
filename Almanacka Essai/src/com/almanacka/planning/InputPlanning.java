@@ -33,7 +33,7 @@ public class InputPlanning
 		return _monitorIntensities.contains( monitorId+"|"+intensityId );
 	}
 		
-	public int computeCardinality()
+	/*public int computeCardinality()
 	{		
 		int cardinality = 1;
 		for(InputLesson IL : _lessons)
@@ -42,7 +42,7 @@ public class InputPlanning
 			cardinality = cardinality * IL.getIntensities().size() * IL.getMonitors().size() * IL.getHosts().size();
 		}
 		return cardinality;
-    }
+    }*/
 	
 	/*
 	 * Display every elements from _monitorIntensities
