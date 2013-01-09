@@ -17,11 +17,13 @@ public class ConnectionToDB
 			Class.forName("com.mysql.jdbc.Driver");
 			connection = DriverManager.getConnection(url, user, password);
 			System.out.println("Connexion à la base de données REUSSIE");
+			System.out.println(" ");
 		}
 		catch (SQLException e)
 		{
 			e.getMessage();
 			System.out.println("Erreur de connexion à la base de données");
+			System.out.println(" ");
 			return null;
 		}
 		return connection;

@@ -62,7 +62,7 @@ public class InputPlanning
 	 *  Display all informations about an InputLesson
 	 */
 	public void PrintInfos(List<InputLesson> list)
-	{	
+	{
 		ListIterator<InputLesson> li = list.listIterator();
 		System.out.println("Infos sur InputLesson");
 		while(li.hasNext())

@@ -26,7 +26,7 @@ public class CreatePlanning
 		ArrayList<InputLesson> lessons = new ArrayList<InputLesson>();
 		HashSet<String> monitorIntensities = new HashSet<String>();
 		
-		String lessonIdFromDB;
+		int lessonIdFromDB;
 		String idPlaceFromDB;
 		Date begDate;
 		Byte isLocked;
@@ -38,7 +38,7 @@ public class CreatePlanning
 		Boolean hasMoreLine = rSet.next();		// renvoie false s'il n'y a pas de lignes à la suite	
 		while( hasMoreLine )
 		{
-			lessonIdFromDB = rSet.getString("lessonId");
+			lessonIdFromDB = Integer.parseInt(rSet.getString("lessonId"));
 			idPlaceFromDB = rSet.getString("idPlace");
 			begDate = rSet.getDate("begDate");
 			isLocked = rSet.getByte("block");		// ceci récupère la valeur du tinyInt
@@ -51,7 +51,8 @@ public class CreatePlanning
 			hosts.add(rSet.getString("idPersonHost"));
 			
 			hasMoreLine = rSet.next();			
-			while( hasMoreLine && rSet.getString("lessonId") == lessonIdFromDB )
+			
+			while( hasMoreLine && Integer.parseInt(rSet.getString("lessonId")) == lessonIdFromDB  )
 			{
 				hosts.add(rSet.getString("idPersonHost"));
 				hasMoreLine = rSet.next();
@@ -59,16 +60,23 @@ public class CreatePlanning
 	
 			try
 			{
-				InputLesson b = new InputLesson(lessonIdFromDB, isLocked, idPlaceFromDB, new java.util.Date( begDate.getTime() ), new java.util.Date( endDate.getTime() ), idIntensity, idMonitor, hosts );
+				InputLesson b = new InputLesson(String.valueOf(lessonIdFromDB), isLocked, idPlaceFromDB, new java.util.Date( begDate.getTime() ), new java.util.Date( endDate.getTime() ), idIntensity, idMonitor, hosts );
 				lessons.add(b);
-			//	System.out.println(b.toString());
+				System.out.println(b.toString());
 			}
 			catch (Exception e)
 			{
 				System.out.println("Erreur lors de la création ");
 			}
 			
-		//	System.out.println("Données depuis CP : " + lessonIdFromDB +" , " + begDate + " , " + endDate /*+ " , "+ begDateTime + " , " + endDateTime +"."*/);
+		/*	System.out.println("Données depuis CP : " + lessonIdFromDB +" , " + begDate + " , " + endDate + " "+idIntensity + " " + idMonitor/*+ " , "+ begDateTime + " , " + endDateTime +".");
+			
+			ListIterator<InputLesson> li = lessons.listIterator();
+			while(li.hasNext())
+			{
+				System.out.println(li.next().toString());
+			}
+			System.out.println("Données depuis le CP liste : "); */
 		}
 		
 		rSet = statement.executeQuery("SELECT idMonitor, idIntensity FROM almanacka.usermonitorintensity;");
