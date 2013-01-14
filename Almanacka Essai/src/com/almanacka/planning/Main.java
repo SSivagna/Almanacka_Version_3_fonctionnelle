@@ -19,18 +19,14 @@ public class Main
 			System.out.println("PARTIE INPUTPLANNING" + " " );
 			System.out.println(" ");
 			System.out.println("  avant appel createInputPlanning");
-			
 			InputPlanning IP1 = CreatePlanning.createPlanning(a);
-		
 			System.out.println(" ");
 			System.out.println("  après appel createInputPlanning");
 			System.out.println(" ");
+			
 			System.out.println("PARTIE OUTPUTPLANNING" + " avant appel createOutputPlanning ");
 			System.out.println(" ");
-			
 			OutputLesson.createOutputPlanning(IP1, 0);
-
-			
 			System.out.println(" ");
 			System.out.println("après appel createOutputplanning");
 			System.out.println("  ");
@@ -42,5 +38,17 @@ public class Main
 			System.out.println(" ");
 			System.out.println("après appel insertOutputlesson");
 		}
+	
+	
+	/*List b=new ArrayList<Integer>();
+	b.add(1);
+	b.add(2);
+	b.add(3);
+	
+	for(int i =0 ; i<b.size(); i++)
+	{
+		System.out.println(b.get(i));
+		System.out.println(" ");
+	}*/
 	}
 }

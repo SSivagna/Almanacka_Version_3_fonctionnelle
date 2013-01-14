@@ -1,6 +1,7 @@
 package com.almanacka.planning;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class OutputPlanning 
@@ -36,5 +37,20 @@ public class OutputPlanning
 	public List<OutputLesson> getLessons()
 	{
 		return _lessons;
+	}
+	
+	public String getOutputLessonFromLessonId(int index)
+	{
+		Iterator<OutputLesson> l = _lessons.iterator();
+		while( l.hasNext() )
+		{
+			if( l.next().getLessonId().equals(String.valueOf(index)) ) 
+			{
+				System.out.println(l.next().getHostd());
+				return l.next().getHostd();
+			}
+		}
+		System.out.println("lessonId est absent!!");
+		return null;
 	}
 }

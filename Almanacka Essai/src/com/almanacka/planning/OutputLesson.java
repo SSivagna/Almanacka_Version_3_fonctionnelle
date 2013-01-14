@@ -15,17 +15,13 @@ public class OutputLesson
 	private String _placeWrapId;
 	private Date _begDate;
 	private Date _endDate;
-	/*private String _intensityId;
+	private String _intensityId;
 	private String _monitorId;
-	private String _host;*/
-	
-/*	private List<String> _intensities;
-	private List<String> _monitors;
-	private List<String> _hosts;*/
-	
+	private String _host;
+	/*
 	private List<String> _intensityId;
 	private List<String> _monitorId;
-	private List<String> _host;
+	private List<String> _host;*/
 	
 	//Ctor pour méthode CreateOuputPlanning
 	public OutputLesson (InputLesson input) // on oublie le int index
@@ -36,9 +32,9 @@ public class OutputLesson
 		_placeWrapId=_input.getPlaceWrapId();
 		_begDate=_input.getBegDate();
 		_endDate=_input.getEndDate();
-		_intensityId = /* input.getIntensities().get(0);*/ input.getIntensities();
-		_monitorId = /*input.getMonitors().get(0);*/ input.getMonitors();
-		_host = /*input.getHosts().get(0);*/ input.getHosts();
+		_intensityId =  input.getIntensities().get(0);/* input.getIntensities();*/
+		_monitorId = input.getMonitors().get(0);/* input.getMonitors();*/
+		_host = input.getHosts().get(0);/* input.getHosts();*/
 	}
 	
 	public InputLesson getInput()
@@ -71,20 +67,20 @@ public class OutputLesson
 		return _endDate;
 	}
 	
-	public /*String*/ List<String> getIntensityId()
+	public String getIntensityId()
 	{
 		return _intensityId;
 	}
 	
-	public /*String*/ List<String> getMonitorId()
+	public  String getMonitorId()
 	{
 		return _monitorId;
 	}
 	
-	public /*String*/ List<String> getHostd()
+	public  String getHostd()
 	{
 		return _host;
-	}	
+	}
 	
 	@Override
 	public String toString() {
@@ -95,8 +91,6 @@ public class OutputLesson
 				+ _monitorId + ", _host=" + _host + "]";
 	}
 	
-	// _input=" + _input +",
-
 	public List<OutputPlanning> optimize(InputPlanning input, int nbMaxSolution)
 	{
 		List<OutputPlanning> listOutputPlanning = new ArrayList<OutputPlanning>();

@@ -21,7 +21,7 @@ public class CreatePlanning
 		Statement statement = connection.createStatement();
 		ResultSet rSet = statement.executeQuery("SELECT L.lessonId, L.idPlace, L.begDate, L.block, L.endDate, L.idIntensity, L.idPersonMonitor, H.idPersonHost  " 
 												+"FROM almanacka.lesson L, almanacka.lessonpersonhost H "
-												+"WHERE L.lessonId=H.lessonId ORDER BY (L.lessonId) ASC ;");
+												+"WHERE L.lessonId = H.lessonId ORDER BY (L.lessonId);");
 		
 		ArrayList<InputLesson> lessons = new ArrayList<InputLesson>();
 		HashSet<String> monitorIntensities = new HashSet<String>();
@@ -50,7 +50,7 @@ public class CreatePlanning
 			hosts.clear();
 			hosts.add(rSet.getString("idPersonHost"));
 			
-			hasMoreLine = rSet.next();			
+			hasMoreLine = rSet.next();
 			
 			while( hasMoreLine && Integer.parseInt(rSet.getString("lessonId")) == lessonIdFromDB  )
 			{
