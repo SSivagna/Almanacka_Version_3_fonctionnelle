@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-//import com.mysql.ConnectionToDB;
-//import com.mysql.CreateInputLesonFromDB;
-
 public class OutputLesson
 {
 	private InputLesson _input;
@@ -24,7 +21,7 @@ public class OutputLesson
 	private List<String> _host;*/
 	
 	//Ctor pour méthode CreateOuputPlanning
-	public OutputLesson (InputLesson input) // on oublie le int index
+	public OutputLesson (InputLesson input) 
 	{
 		_input = input;
 		_lessonId=_input.getLessonId();
@@ -108,9 +105,9 @@ public class OutputLesson
 		List<OutputLesson> listOutputLesson = new ArrayList<>();
 		for(int i = 0; i < input.getLessons().size(); i++)
 		{
-			listOutputLesson.add( new OutputLesson(input.getLessons().get(i))); // on oublie le p
+			listOutputLesson.add( new OutputLesson(input.getLessons().get(i))); 
 			
-			System.out.println(listOutputLesson.get(i)); // j'ai enlevé le toSting après le get(i)
+			System.out.println(listOutputLesson.get(i));
 		}
 		return new OutputPlanning( 0, listOutputLesson );
 	}

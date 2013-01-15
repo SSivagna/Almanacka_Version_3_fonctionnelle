@@ -3,14 +3,7 @@ package com.mysql;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
-//import java.sql.ResultSet;
 import java.sql.SQLException;
-//import java.sql.Statement;
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.HashSet;
-//import java.util.Hashtable;
-//import java.util.List;
 
 import com.almanacka.planning.InputPlanning;
 import com.almanacka.planning.OutputLesson;
@@ -51,7 +44,6 @@ public class InsertOutputLessonInDB
 				System.out.println("sqlEndDate : " + sqlEndDate);
 				 */	
 				
-				// 0 si pas inséré
 				int rSet = preparedStatement.executeUpdate();
 				System.out.println("Valeur du int rSet :" + rSet);
 				System.out.println("   ");
@@ -98,55 +90,5 @@ public class InsertOutputLessonInDB
 				}
 			}
 		}
-		
-		
-		/*
-		Statement statement = connection.createStatement();
-		ResultSet rSet = statement.executeQuery("SELECT lessonId from almanacka.lesson");
-		
-		Hashtable<Integer,String> listOfOutLHost = new Hashtable<Integer,String>();
-				
-		while(rSet.next())
-		{
-		    int	lessonId = Integer.parseInt(rSet.getString("lessonId"));
-		    String k = a.getOutputLessonFromLessonId(lessonId);
-		    if(k!=null) {
-		    	listOfOutLHost.put(lessonId,k);   
-		    }
-		    else
-		    {
-		    	System.out.println("erreur");
-		    	return;
-		    }
-		}
-		
-
-		System.out.println("Insertion des outputlessons");
-		
-		String sql2 = " INSERT INTO almanacka.lessonpersonhostfortest (lessonId, idPersonHost) VALUES (?,?) " ;
-		PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-		
-
-		for( int x = 0; x<listOfOutLHost.size() ; x++)
-		{
-			if(listOfOutLHost.containsKey(x))
-			{
-				String var1=listOfOutLHost.get(x);
-				
-				preparedStatement2.setInt(1, x);
-				preparedStatement2.setInt(2, Integer.parseInt(var1) );
-				int rSet2 = preparedStatement2.executeUpdate();
-				
-				System.out.println("Valeur du int rSet2 :" + rSet2);
-			}
-			
-			//String sql2 = " UPDATE almanacka.lessonpersonhostfortest SET idPersonHost = ? WHERE lessonId = ? " ;
-			//System.out.println(preparedStatement2.toString());
-			// INSERT INTO `almanacka`.`lessonpersonhostfortest` (`lessonId`, `idPersonHost`) VALUES ('1', '5');
-			// UPDATE `almanacka`.`lessonpersonhostfortest` SET `idPersonHost`='50' WHERE `lessonId`='1';
-			
-			System.out.println("   ");
-		}*/
-		
 	}
 }

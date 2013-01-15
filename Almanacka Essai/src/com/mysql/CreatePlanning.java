@@ -35,18 +35,17 @@ public class CreatePlanning
 		String idMonitor;
 		List<String> hosts = new ArrayList<String>();
 
-		Boolean hasMoreLine = rSet.next();		// renvoie false s'il n'y a pas de lignes à la suite	
+		Boolean hasMoreLine = rSet.next();
 		while( hasMoreLine )
 		{
 			lessonIdFromDB = Integer.parseInt(rSet.getString("lessonId"));
 			idPlaceFromDB = rSet.getString("idPlace");
 			begDate = rSet.getDate("begDate");
-			isLocked = rSet.getByte("block");		// ceci récupère la valeur du tinyInt
+			isLocked = rSet.getByte("block");	
 			endDate = rSet.getDate("endDate");
 			idIntensity=rSet.getString("idIntensity");
 			idMonitor=rSet.getString("idPersonMonitor");
 			
-			// on remet à zéro la liste 
 			hosts.clear();
 			hosts.add(rSet.getString("idPersonHost"));
 			
@@ -57,7 +56,7 @@ public class CreatePlanning
 				hosts.add(rSet.getString("idPersonHost"));
 				hasMoreLine = rSet.next();
 			}
-	
+			
 			try
 			{
 				InputLesson b = new InputLesson(String.valueOf(lessonIdFromDB), isLocked, idPlaceFromDB, new java.util.Date( begDate.getTime() ), new java.util.Date( endDate.getTime() ), idIntensity, idMonitor, hosts );
@@ -66,7 +65,7 @@ public class CreatePlanning
 			}
 			catch (Exception e)
 			{
-				System.out.println("Erreur lors de la création ");
+				System.out.println("Erreur lors de la création du planning ");
 			}
 			
 		/*	System.out.println("Données depuis CP : " + lessonIdFromDB +" , " + begDate + " , " + endDate + " "+idIntensity + " " + idMonitor/*+ " , "+ begDateTime + " , " + endDateTime +".");

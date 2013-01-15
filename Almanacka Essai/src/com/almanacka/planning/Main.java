@@ -13,7 +13,7 @@ public class Main
 	public static void main(String[] args) throws  ClassNotFoundException, SQLException, ParseException
 	{ 
 		Connection a = ConnectionToDB.connect();
-
+		
 		if (a != null)
 		{	
 			System.out.println("PARTIE INPUTPLANNING" + " " );
@@ -38,17 +38,9 @@ public class Main
 			System.out.println(" ");
 			System.out.println("après appel insertOutputlesson");
 		}
-	
-	
-	/*List b=new ArrayList<Integer>();
-	b.add(1);
-	b.add(2);
-	b.add(3);
-	
-	for(int i =0 ; i<b.size(); i++)
-	{
-		System.out.println(b.get(i));
-		System.out.println(" ");
-	}*/
+		else
+		{
+			System.out.println("Erreur de connexion à la BDD depuis le Main !");
+		}
 	}
 }

@@ -55,9 +55,6 @@ public class InputLesson
 		_hosts=new ArrayList<String>(hosts);
 	}
 	
-	/*
-	 * Getters and Setters 
-	 */
 	public String getLessonId()
 	{
 		return _lessonId;
