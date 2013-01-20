@@ -1,21 +1,22 @@
 package com.almanacka.planning;
 
-import java.sql.Connection;
+//import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-import com.mysql.ConnectionToDB;
-import com.mysql.CreatePlanning;
-import com.mysql.InsertOutputLessonInDB;
+//import com.mysql.ConnectionToDB;
+//import com.mysql.CreatePlanning;
+import com.mysql.GetPlanning;
+//import com.mysql.InsertOutputLessonInDB;
 
 public class Main 
 {
 	public static void main(String[] args) throws  ClassNotFoundException, SQLException, ParseException
-	{ 
+	{ 	/*
 		Connection a = ConnectionToDB.connect();
 		
 		if (a != null)
-		{	
+		{	/*
 			System.out.println("PARTIE INPUTPLANNING" + " " );
 			System.out.println(" ");
 			System.out.println("  avant appel createInputPlanning");
@@ -41,6 +42,8 @@ public class Main
 		else
 		{
 			System.out.println("Erreur de connexion à la BDD depuis le Main !");
-		}
+		}*/
+		
+		GetPlanning.getPlanning();
 	}
 }
