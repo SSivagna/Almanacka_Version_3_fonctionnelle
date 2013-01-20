@@ -19,14 +19,14 @@ public class OutputLesson
 	public OutputLesson (InputLesson input) 
 	{
 		_input = input;
-		_lessonId=_input.getLessonId();
-		_isLocked=input.getIsInputLocked();
-		_placeWrapId=_input.getPlaceWrapId();
-		_begDate=_input.getBegDate();
-		_endDate=_input.getEndDate();
-		_intensityId =  input.getIntensities().get(0);/* input.getIntensities();*/
-		_monitorId = input.getMonitors().get(0);/* input.getMonitors();*/
-		_host = input.getHosts().get(0);/* input.getHosts();*/
+		_lessonId =	input.getLessonId();
+		_isLocked =	input.getIsInputLocked();
+		_placeWrapId =	input.getPlaceWrapId();
+		_begDate =	input.getBegDate();
+		_endDate =	input.getEndDate();
+		_intensityId =  input.getIntensities().get(0);	/* input.getIntensities();*/
+		_monitorId = input.getMonitors().get(0);	/* input.getMonitors();*/
+		_host = input.getHosts().get(0);	/* input.getHosts();*/
 	}
 	
 	public InputLesson getInput()
@@ -76,7 +76,7 @@ public class OutputLesson
 	
 	@Override
 	public String toString() {
-		return "OutputLesson [_lessonId=" + _lessonId
+		return "OutputLesson 1 [_lessonId=" + _lessonId
 				+ ", _isLocked=" + _isLocked + ", _placeWrapId=" + _placeWrapId
 				+ ", _begDate=" + _begDate + ", _endDate=" + _endDate
 				+ ", _intensityId=" + _intensityId + ", _monitorId="

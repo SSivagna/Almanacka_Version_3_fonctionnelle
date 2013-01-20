@@ -79,8 +79,6 @@ public class CreatePlanning
 			statement.close();
 		}
 		
-		//DeleteTableLesson.DeleteTableInDB(connection);
-		
 		return new InputPlanning(lessons, monitorIntensities);
 	}
 }

@@ -7,7 +7,7 @@ public class InputLesson
 {
 	private String _lessonId;
 	private Byte _isLocked;
-	private byte _isInputLocked;
+	private Byte _isInputLocked;
 	private Boolean _isAutomaticLocked;
 	private String _placeWrapId;
 	private Date _begDate;
@@ -39,7 +39,7 @@ public class InputLesson
 		_monitors = new ArrayList<>();
 		_intensities.add(intensity);
 		_monitors.add(monitor);
-		_hosts=new ArrayList<String>(hosts);
+		_hosts = new ArrayList<String>(hosts);
 	}
 
 	public String getLessonId()
@@ -119,7 +119,7 @@ public class InputLesson
 	
 	public List<String> getMonitors()
 	{
-		return _intensities;
+		return _monitors;
 	}
 	
 	public List<String> getHosts()
