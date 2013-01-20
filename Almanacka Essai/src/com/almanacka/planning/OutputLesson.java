@@ -94,7 +94,6 @@ public class OutputLesson
 		return listOutputPlanning;
 	}
 	
-	//on prend 5 éléments de InputPlanning
 	static public OutputPlanning createOutputPlanning (InputPlanning input, int p)
 	{
 		List<OutputLesson> listOutputLesson = new ArrayList<>();

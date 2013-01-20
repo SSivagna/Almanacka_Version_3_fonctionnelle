@@ -15,8 +15,6 @@ public class OutputPlanning
 		_lessons = new ArrayList<OutputLesson>();
 	}
 	
-	// fonction qui copie les éléments de la liste
-	
 	public OutputPlanning(double cost, List<OutputLesson> listOutputlessons)
 	{
 		_cost = cost;

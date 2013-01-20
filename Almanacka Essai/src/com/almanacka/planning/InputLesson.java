@@ -7,7 +7,7 @@ public class InputLesson
 {
 	private String _lessonId;
 	private Byte _isLocked;
-	private Byte _isInputLocked;
+	private byte _isInputLocked;
 	private Boolean _isAutomaticLocked;
 	private String _placeWrapId;
 	private Date _begDate;
@@ -15,7 +15,7 @@ public class InputLesson
 	private List<String> _intensities;
 	private List<String> _monitors;
 	private List<String> _hosts;
-
+	
 	public InputLesson(String lessonId, Byte isInputLocked, String placeId, Date begDate, Date endDate, List<String> iTensities, List<String> iMonitors, List<String> iHosts )
 	{
 		_lessonId = lessonId;
@@ -41,7 +41,7 @@ public class InputLesson
 		_monitors.add(monitor);
 		_hosts=new ArrayList<String>(hosts);
 	}
-	
+
 	public String getLessonId()
 	{
 		return _lessonId;
@@ -62,7 +62,7 @@ public class InputLesson
 		this._isLocked = isLocked;
 	}
 
-	public Byte getIsInputLocked()
+	public Byte getIsInputLocked()	
 	{
 		return _isInputLocked;
 	}
@@ -111,7 +111,7 @@ public class InputLesson
 	{
 		this._endDate = endDate;
 	}
-
+	
 	public List<String> getIntensities()
 	{
 		return _intensities;

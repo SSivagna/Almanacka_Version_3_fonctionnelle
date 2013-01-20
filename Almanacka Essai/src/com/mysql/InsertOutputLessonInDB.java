@@ -17,7 +17,7 @@ public class InsertOutputLessonInDB
 		
 		for(int i = 0; i < a.getLessons().size(); i++ )
 		{
-			String sql = "INSERT INTO almanacka.lessonfortest (lessonId, idPlace, begDate, block, endDate, idIntensity , idPersonMonitor) VALUES (?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO almanacka.lesson (lessonId, idPlace, begDate, block, endDate, idIntensity , idPersonMonitor) VALUES (?, ?, ?, ?, ?, ?, ?)";
 			
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			
@@ -35,25 +35,28 @@ public class InsertOutputLessonInDB
 				preparedStatement.setDate(5, sqlEndDate);
 				preparedStatement.setInt(6, Integer.parseInt(lesson.getMonitorId()));
 				preparedStatement.setInt(7, Integer.parseInt(lesson.getIntensityId()));
-				
+		
+			/*
 				System.out.println("ds insertintoDB");
 				System.out.println(preparedStatement.toString());
 				System.out.println(" ");
-							
-				int rSet = preparedStatement.executeUpdate();
-				System.out.println("Valeur du int rSet :" + rSet);
-				System.out.println("   ");
+		*/					
+		//		int rSet = 
+				preparedStatement.executeUpdate();
+		/*		System.out.println("Valeur du int rSet :" + rSet);
+				System.out.println("   ");	*/
 		
-				System.out.println("Insertion des hosts");
-				System.out.println("      ");
+		/*		System.out.println("Insertion des hosts");
+				System.out.println("      ");	*/
 				String sql2 = "INSERT INTO almanacka.lessonpersonhostfortest (lessonId, idPersonHost) VALUES ( ? , ? )";
 				PreparedStatement preparedSstatement2 = connection.prepareStatement(sql2);
 				preparedSstatement2.setInt(1, Integer.parseInt(lesson.getLessonId()));
 				preparedSstatement2.setString(2, lesson.getHostd());
-				int rSet2 = preparedSstatement2.executeUpdate(); 
+		//		int rSet2 = 
+				preparedSstatement2.executeUpdate(); 
 				System.out.println(preparedSstatement2.toString());
-				System.out.println("Valeur du int rSet 2 :" + rSet2);
-				System.out.println("   ");
+		/*		System.out.println("Valeur du int rSet 2 :" + rSet2);
+				System.out.println("   ");	*/
 			}
 			catch (Exception e)
 			{
