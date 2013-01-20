@@ -50,7 +50,6 @@ public class CreatePlanning
 			hosts.add(rSet.getString("idPersonHost"));
 			
 			hasMoreLine = rSet.next();
-			
 			while( hasMoreLine && Integer.parseInt(rSet.getString("lessonId")) == lessonIdFromDB  )
 			{
 				hosts.add(rSet.getString("idPersonHost"));
@@ -61,31 +60,22 @@ public class CreatePlanning
 			{
 				InputLesson b = new InputLesson(String.valueOf(lessonIdFromDB), isLocked, idPlaceFromDB, new java.util.Date( begDate.getTime() ), new java.util.Date( endDate.getTime() ), idIntensity, idMonitor, hosts );
 				lessons.add(b);
-				System.out.println(b.toString());
 			}
 			catch (Exception e)
 			{
 				System.out.println("Erreur lors de la création du planning ");
 			}
 			
-		/*	System.out.println("Données depuis CP : " + lessonIdFromDB +" , " + begDate + " , " + endDate + " "+idIntensity + " " + idMonitor/*+ " , "+ begDateTime + " , " + endDateTime +".");
-			
-			ListIterator<InputLesson> li = lessons.listIterator();
-			while(li.hasNext())
-			{
-				System.out.println(li.next().toString());
-			}
-			System.out.println("Données depuis le CP liste : "); */
 		}
 		
 		rSet = statement.executeQuery("SELECT idMonitor, idIntensity FROM almanacka.usermonitorintensity;");
-		
 		while(rSet.next())
 		{
 			String monitorIdFromDB = rSet.getString("idMonitor");
 			String intensityIdFromDB = rSet.getString("idIntensity");			
 			monitorIntensities.add(intensityIdFromDB + '|' + monitorIdFromDB);
 		}
+		
 		return new InputPlanning(lessons, monitorIntensities);
 	}
 }

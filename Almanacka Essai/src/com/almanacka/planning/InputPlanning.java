@@ -2,9 +2,8 @@ package com.almanacka.planning;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
+
 
 public class InputPlanning
 {
@@ -43,41 +42,4 @@ public class InputPlanning
 		}
 		return cardinality;
     }*/
-	
-	/*
-	 * Display every elements from _monitorIntensities
-	 */
-	public void PrintInfosHashset(HashSet<String> hashset)
-	{	
-		Iterator<String> li = hashset.iterator();
-		System.out.println("Infos monitorIntensities");
-		
-		while(li.hasNext())
-		{
-			System.out.println(li.next().toString());
-		}
-	}
-
-	/*
-	 *  Display all informations about an InputLesson
-	 */
-	public void PrintInfos(List<InputLesson> list)
-	{
-		ListIterator<InputLesson> li = list.listIterator();
-		System.out.println("Infos sur InputLesson");
-		while(li.hasNext())
-		{
-			System.out.println(li.next().toString());
-		}
-	}
-	
-	/*
-	 * Display all elements from _ monitorIntensities and _lessons
-	 */
-	public void PrintInfos()
-	{
-		PrintInfos(_lessons);
-		System.out.println("");
-		PrintInfosHashset(_monitorIntensities);
-	}
 }

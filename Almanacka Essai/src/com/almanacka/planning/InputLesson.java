@@ -28,19 +28,6 @@ public class InputLesson
 		_hosts = new ArrayList<>(iHosts);
 	}
 	
-	public InputLesson(String lessonId, Byte isInputLocked, String placeId, Date begDate, Date endDate, String intensity, String monitor )
-	{
-		_lessonId = lessonId;
-		_isInputLocked = isInputLocked;
-		_placeWrapId = placeId;
-		_begDate = begDate;
-		_endDate = endDate;	
-		_intensities = new ArrayList<>();
-		_monitors = new ArrayList<>();
-		_intensities.add(intensity);
-		_monitors.add(monitor);
-	}
-	
 	public InputLesson(String lessonId, Byte isInputLocked, String placeId, Date begDate, Date endDate, String intensity, String monitor, List<String> hosts )
 	{
 		_lessonId = lessonId;

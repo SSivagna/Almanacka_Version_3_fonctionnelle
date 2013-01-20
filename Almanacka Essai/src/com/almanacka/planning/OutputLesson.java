@@ -15,12 +15,7 @@ public class OutputLesson
 	private String _intensityId;
 	private String _monitorId;
 	private String _host;
-	/*
-	private List<String> _intensityId;
-	private List<String> _monitorId;
-	private List<String> _host;*/
 	
-	//Ctor pour méthode CreateOuputPlanning
 	public OutputLesson (InputLesson input) 
 	{
 		_input = input;

@@ -39,33 +39,11 @@ public class InsertOutputLessonInDB
 				System.out.println("ds insertintoDB");
 				System.out.println(preparedStatement.toString());
 				System.out.println(" ");
-				/*	System.out.println(" DATES EN SQL ");
-				System.out.println("sqlBegDate : " + sqlBegDate);
-				System.out.println("sqlEndDate : " + sqlEndDate);
-				 */	
-				
+							
 				int rSet = preparedStatement.executeUpdate();
 				System.out.println("Valeur du int rSet :" + rSet);
 				System.out.println("   ");
-			
-				/*
-				preparedStatement2.setInt(1, Integer.parseInt(lesson.getHostd().get(0)));
-			
-				preparedStatement2.setInt(2, i);
-				*/
-
-				/*
-				String sql2 = "INSERT INTO almanacka.lessonpersonhostfortest (idPersonHost) VALUES (?) WHERE lessonId = ? ";
-				
-				PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
-				
-				
-				
-				int rSet2 = preparedStatement2.executeUpdate();
-				System.out.println("Valeur du int rSet2 :" + rSet2);
-				System.out.println("   "); */
-				
-				
+		
 				System.out.println("Insertion des hosts");
 				System.out.println("      ");
 				String sql2 = "INSERT INTO almanacka.lessonpersonhostfortest (lessonId, idPersonHost) VALUES ( ? , ? )";
