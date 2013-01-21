@@ -143,7 +143,8 @@ public class InputLesson
 	 * Display all informations about an InputLesson
 	 */
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		return "InputLesson [_lessonId=" + _lessonId + ", _isLocked="
 				+ _isLocked + ", _isInputLocked=" + _isInputLocked
 				+ ", _isAutomaticLocked=" + _isAutomaticLocked

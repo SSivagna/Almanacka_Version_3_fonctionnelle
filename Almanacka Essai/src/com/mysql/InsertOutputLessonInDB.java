@@ -38,9 +38,11 @@ public class InsertOutputLessonInDB
 				preparedStatement.setDate(5, sqlEndDate);
 				preparedStatement.setInt(6, Integer.parseInt(lesson.getIntensityId()));	
 				preparedStatement.toString();
-				int rSet = preparedStatement.executeUpdate();
-				System.out.println("Valeur du int rSet :" + rSet);
-				System.out.println("   ");	
+				
+		/*		int rSet = */ preparedStatement.executeUpdate();
+		//		System.out.println("Valeur du int rSet :" + rSet);
+				preparedStatement.close();
+		//		System.out.println("   ");	
 		
 								
 				//Insertion des hosts
@@ -48,12 +50,13 @@ public class InsertOutputLessonInDB
 				String sql2 = "INSERT INTO almanacka.lessonpersonhost (lessonId, idPersonHost) VALUES ( ? , ? )";
 				PreparedStatement preparedStatement2 = connection.prepareStatement(sql2);
 				preparedStatement2.setInt(1, Integer.parseInt(lesson.getLessonId()));
-				preparedStatement2.setString(2, lesson.getHostd());
-				int rSet2 = preparedStatement2.executeUpdate(); 
-				preparedStatement2.toString();
-			//	preparedStatement2.close();
-				System.out.println("Valeur du int rSet 2 :" + rSet2);
-				System.out.println("   ");	
+				preparedStatement2.setInt(2, Integer.parseInt(lesson.getHostd()));
+		/*		int rSet2 = */ preparedStatement2.executeUpdate(); 
+		//		preparedStatement2.toString();
+				
+		//		System.out.println("Valeur du int rSet 2 :" + rSet2);
+				preparedStatement2.close();
+		//		System.out.println("   ");	
 				
 				
 				//Insertion des hosts
@@ -62,23 +65,15 @@ public class InsertOutputLessonInDB
 				PreparedStatement preparedStatement3 = connection.prepareStatement(sql3);
 				preparedStatement3.setInt(1, Integer.parseInt(lesson.getLessonId()));
 				preparedStatement3.setInt(2, Integer.parseInt(lesson.getMonitorId()));
-				int rset3 = preparedStatement3.executeUpdate();
-				preparedStatement3.toString();
-			//	preparedStatement3.close();
-				System.out.println("Valeur du int rSet 3 :" + rset3);
-				System.out.println("   ");	
+		/*		int rset3 = */ preparedStatement3.executeUpdate();
+				
+		//		System.out.println("Valeur du int rSet 3 :" + rset3);
+				preparedStatement3.close();	
 			}
 			catch (Exception e)
 			{
 				System.out.println("Erreur lors de l'insertion de l'OuputLesson dans la base de données !!! ");
 				System.out.println(" ");
-			}
-			finally
-			{
-				if(preparedStatement != null)
-				{
-					preparedStatement.close();
-				}
 			}
 		}
 	}

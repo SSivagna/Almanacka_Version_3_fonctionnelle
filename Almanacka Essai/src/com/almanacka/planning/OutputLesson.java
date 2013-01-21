@@ -16,7 +16,7 @@ public class OutputLesson
 	private String _monitorId;
 	private String _host;
 	
-	public OutputLesson (InputLesson input) 
+	public OutputLesson (InputLesson input)
 	{
 		_input = input;
 		_lessonId =	input.getLessonId();
@@ -26,7 +26,7 @@ public class OutputLesson
 		_endDate =	input.getEndDate();
 		_intensityId =  input.getIntensities().get(0);	/* input.getIntensities();*/
 		_monitorId = input.getMonitors().get(0);	/* input.getMonitors();*/
-		_host = input.getHosts().get(0);	/* input.getHosts();*/
+		_host = input.getHosts().get(0); /* input.getHosts();*/
 	}
 	
 	public InputLesson getInput()
