@@ -101,7 +101,7 @@ public class OutputLesson
 		{
 			listOutputLesson.add( new OutputLesson(input.getLessons().get(i))); 
 			
-			System.out.println(listOutputLesson.get(i));
+	//		System.out.println(listOutputLesson.get(i));
 		}
 		return new OutputPlanning( 0, listOutputLesson );
 	}

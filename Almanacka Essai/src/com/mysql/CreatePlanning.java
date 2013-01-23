@@ -1,13 +1,12 @@
 package com.mysql;
 
 import java.sql.Connection;
-// java.sql.Date;
 import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
+// import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,10 +28,8 @@ public class CreatePlanning
 		
 		int lessonIdFromDB;
 		String idPlaceFromDB;
-	//	Date begDate;
 		Timestamp begDate;;
 		Byte isLocked;
-	//	Date endDate;
 		Timestamp endDate;
 		String idIntensity;
 		String idMonitor;
@@ -43,24 +40,16 @@ public class CreatePlanning
 		{
 			lessonIdFromDB = Integer.parseInt(rSet.getString("lessonId"));
 			idPlaceFromDB = rSet.getString("idPlace");
-	/*		begDate = rSet.getDate("begDate").getTime()
-					+ rSet.getTime("begDate").getTime();
-			System.out.println(new java.util.Date(begDate).toString());*/
-	
-		//	begDate = rSet.getDate("begDate");			we collect only the date
 			begDate = rSet.getTimestamp("begDate");
-			String S = new SimpleDateFormat("MM/dd/yyyy HH:mm").format(begDate);
+		//	String S = new SimpleDateFormat("MM/dd/yyyy HH:mm").format(begDate);
 		//	System.out.println("begDate formaté :" + S);
-			
 			isLocked = rSet.getByte("block");
-		
-		//	endDate = rSet.getDate("endDate");		we collect only the date
 			endDate = rSet.getTimestamp("endDate");
-			String S1 = new SimpleDateFormat("MM/dd/yyyy HH:mm").format(endDate);
-			System.out.println("endDate formaté : " + S1);
-			
+		//	String S1 = new SimpleDateFormat("MM/dd/yyyy HH:mm").format(endDate);
+		//	System.out.println("endDate formaté : " + S1);
 			idIntensity=rSet.getString("idIntensity");
 			idMonitor=rSet.getString("idPersonMonitor");
+			
 			hosts.clear();
 			hosts.add(rSet.getString("idPersonHost"));
 			
